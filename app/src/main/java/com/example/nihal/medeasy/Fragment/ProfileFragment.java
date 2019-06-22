@@ -24,9 +24,11 @@ import android.widget.Toast;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.model.Image;
 import com.example.nihal.medeasy.Adapters.AddMedcineAdapter;
+import com.example.nihal.medeasy.Models.AssessmentSheetModel;
 import com.example.nihal.medeasy.Models.Drugs;
 import com.example.nihal.medeasy.Models.UserModel;
 import com.example.nihal.medeasy.R;
+import com.example.nihal.medeasy.SecondActivity;
 import com.example.nihal.medeasy.Utils.Constants;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -38,6 +40,7 @@ import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +57,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -74,6 +78,8 @@ public class ProfileFragment extends Fragment {
     ArrayList<Drugs> drugs;
     StorageReference mImageRef;
     //Firebase
+    List<AssessmentSheetModel> ASModelList = new ArrayList<>();
+
     FirebaseStorage storage;
     StorageReference storageReference;
     private DatabaseReference mDatabase;
@@ -114,6 +120,7 @@ public class ProfileFragment extends Fragment {
             }
         });
         try {
+            StorageReference mImageRef;
             mImageRef =
                     FirebaseStorage.getInstance()
                             .getReference("images/"+Hawk.get(Constants.userID)+"");
@@ -159,13 +166,62 @@ public class ProfileFragment extends Fragment {
         addMedcineAdapter = new AddMedcineAdapter(drugs, new AddMedcineAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
-
+                getContext().startActivity(new Intent(getContext(), SecondActivity.class));
             }
         });
         RV.setAdapter(addMedcineAdapter);
         retrieveMedicine();
+        //getDataFromFireBase();
         return view;
     }
+
+    public void getDataFromFireBase() {
+        DatabaseReference myRef;
+        FirebaseDatabase database;
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users").child(FirebaseAuth.getInstance().getUid()).child("Roshetat");
+        Query query = myRef.orderByKey();
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //ASModelList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("TTTTTT", "onDataChange: " + snapshot.toString());
+                    for (final DataSnapshot tData : snapshot.child("Rosheta").getChildren()) {
+                        Log.d("Rosheta/Genaral", "onDataChange: " + tData.toString());
+                        Log.d("last  <>   Loop", "onDataChange: " + tData.toString());
+                        try {
+                            AssessmentSheetModel sheetModel = tData.getValue(AssessmentSheetModel.class);
+                            Log.d("TTTTTTTTTT", "onDataChange:1111111 " + sheetModel.getChest_pain());
+                            if (sheetModel.getChest_pain() != null) {
+                                ASModelList.add(sheetModel);
+                            }
+                            Log.d("TTTTTTTTTT", "onDataChange:1111111 " + ASModelList.size());
+
+                        } catch (Exception e) {
+                            Log.d("TTTTTTTTTT", "onDataChange:1111111 " + e.toString());
+
+                        }
+
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /**  -------------------------------  **/
+
+
+    }
+
 
     private void returnData() {
         mDatabase.child("Users").child(Hawk.get(Constants.userID) + "")

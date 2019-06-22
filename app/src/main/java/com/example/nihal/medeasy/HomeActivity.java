@@ -2,27 +2,48 @@ package com.example.nihal.medeasy;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.example.nihal.medeasy.Fragment.AssessmentSheetsFragment;
+import com.example.nihal.medeasy.Fragment.PostFragment;
 import com.example.nihal.medeasy.Fragment.ProfileFragment;
+import com.example.nihal.medeasy.Models.UserModel;
+import com.example.nihal.medeasy.Utils.Constants;
 import com.example.nihal.medeasy.widget.CanaroTextView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.orhanobut.hawk.Hawk;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
+
+import java.util.Calendar;
 
 public class HomeActivity extends AppCompatActivity {
     private static final long RIPPLE_DURATION = 250;
@@ -31,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     View contentHamburger;
     AHBottomNavigation bottom_navigation;
     CanaroTextView addCategory, addSyndr;
+    com.example.nihal.medeasy.widget.CanaroTextView Account_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +62,9 @@ public class HomeActivity extends AppCompatActivity {
         root = findViewById(R.id.root);
         contentHamburger = findViewById(R.id.guillotine_icon_nav);
         bottom_navigation = findViewById(R.id.bottom_navigation);
-        final ProfileFragment profileFragment=new ProfileFragment();
-        final AssessmentSheetsFragment assessmentSheetsFragment =new AssessmentSheetsFragment();
+        final ProfileFragment profileFragment = new ProfileFragment();
+        final AssessmentSheetsFragment assessmentSheetsFragment = new AssessmentSheetsFragment();
+        final PostFragment postFragment = new PostFragment();
 
 
         //NavigationDrawer
@@ -111,15 +134,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
                 // Do something cool here...
-                if(position==0){
+                if (position == 0) {
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.container, assessmentSheetsFragment);
                     fragmentTransaction.commit();
-                }else if(position==1){
+                } else if (position == 1) {
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.container, profileFragment);
+                    fragmentTransaction.replace(R.id.container, postFragment);
                     fragmentTransaction.commit();
-                }else {
+                } else {
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.container, profileFragment);
                     fragmentTransaction.commit();
@@ -144,8 +167,44 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         View guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
+        Account_name=guillotineMenu.findViewById(R.id.Account_name);
+
+        returnData();
+
+
 
         //here will cntrol galilio items
+        final ImageView profile = guillotineMenu.findViewById(R.id.profile_img_galilio);
+        try {
+            StorageReference mImageRef;
+            mImageRef =
+                    FirebaseStorage.getInstance()
+                            .getReference("images/" + Hawk.get(Constants.userID) + "");
+
+            final long ONE_MEGABYTE = 1024 * 1024;
+            mImageRef.getBytes(ONE_MEGABYTE)
+                    .addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Log.d("TTTTTTTTTTT", "onSuccess: " + bytes.length);
+                            Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            DisplayMetrics dm = new DisplayMetrics();
+                            HomeActivity.this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+                            profile.setImageBitmap(bm);
+                        }
+
+                    });
+            mImageRef.getBytes(ONE_MEGABYTE).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d("TTTTTTTTTTT", "onSuccess: " + e.getMessage());
+
+                }
+            });
+        } catch (Exception e) {
+            Log.d("TTTTTTTTTTT", "onSuccess: " + e.getMessage());
+
+        }
         LinearLayout test = guillotineMenu.findViewById(R.id.ctyg_section);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,7 +230,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, SyndrActivity.class));
             }
         });
- LinearLayout medicine = guillotineMenu.findViewById(R.id.drugs_section);
+        LinearLayout medicine = guillotineMenu.findViewById(R.id.drugs_section);
         medicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,32 +251,51 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-        public void onBackPressed() {
-            new AlertDialog.Builder(HomeActivity.this)
-                    .setTitle("")
-                    .setMessage("are you sure you want to out ?")
+    public void onBackPressed() {
+        new AlertDialog.Builder(HomeActivity.this)
+                .setTitle("")
+                .setMessage("are you sure you want to out ?")
 
-                    // Specifying a listener allows you to take an action before dismissing the dialog.
-                    // The dialog is automatically dismissed when a dialog button is clicked.
-                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Continue with delete operation
-                            finish();
-                        }
-                    })
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                        finish();
+                    }
+                })
 
-                    // A null listener allows the button to dismiss the dialog and take no further action.
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
 
 
-        }
+    }
+    private void returnData() {
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Users").child(Hawk.get(Constants.userID) + "")
+                .child("Info").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                    Account_name.setText(userModel.getUserName());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
 }

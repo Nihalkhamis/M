@@ -75,7 +75,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 final ProgressDialog loding = new ProgressDialog(SignupActivity.this);
 
-                loding.setMessage("Loding please w8 ...");
+                loding.setMessage("Loding please ...");
                 loding.setCancelable(false);
 
                 if (male.isChecked()) {

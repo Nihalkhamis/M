@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.nihal.medeasy.Models.AssessmentSheetModel;
 import com.example.nihal.medeasy.Models.Drugs;
+import com.example.nihal.medeasy.Utils.Constants;
+import com.orhanobut.hawk.Hawk;
 
 public class AssessmentSheetAfterSecion extends AppCompatActivity {
 
@@ -37,6 +39,8 @@ public class AssessmentSheetAfterSecion extends AppCompatActivity {
                 ,"jdndn","dndm"
                 ,"jdjfnd","1","0","1","2","1");
         //
+
+        sheetModel=Hawk.get(Constants.assmentModel);
 
 
         yourComplaint = findViewById(R.id.yourComplaint);

@@ -32,6 +32,7 @@ public class BloodDialoge extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.blood_dialog);
         blood_type = findViewById(R.id.blood_type);
         save = findViewById(R.id.save);
         cancel= findViewById(R.id.cancel);
