@@ -55,6 +55,7 @@ public class AssessmentSheetsFragment extends Fragment {
 
         // Inflate the layout for this fragment
 
+        ASModelList.clear();
         View view = inflater.inflate(R.layout.fragment_assessment_sheets, container, false);
         adapter = new AssessmentSheetsModleAdapter(ASModelList, new AssessmentSheetsModleAdapter.OnItemClick() {
             @Override

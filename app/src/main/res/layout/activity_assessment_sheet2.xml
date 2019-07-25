@@ -196,6 +196,7 @@
                     <EditText
                         android:id="@+id/pulse_rate"
                         android:layout_width="70dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="5dp" />
@@ -228,6 +229,7 @@
                     <EditText
                         android:id="@+id/pulse_equality"
                         android:layout_width="70dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
@@ -252,7 +254,7 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
-
+                        android:inputType="number"
                         />
 
                 </LinearLayout>
@@ -365,6 +367,7 @@
                     <EditText
                         android:id="@+id/vital_signs_bp_right"
                         android:layout_width="70dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
@@ -397,6 +400,7 @@
                     <EditText
                         android:id="@+id/vital_signs_bp_left"
                         android:layout_width="70dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
@@ -436,6 +440,7 @@
                     <EditText
                         android:id="@+id/vital_signs_temp"
                         android:layout_width="70dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="-60dp"
@@ -477,6 +482,7 @@
                     <EditText
                         android:id="@+id/vital_sign_rr"
                         android:layout_width="70dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="-60dp"
@@ -517,6 +523,7 @@
                     <EditText
                         android:id="@+id/vital_sign_o2_saturation"
                         android:layout_width="70dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="-60dp"

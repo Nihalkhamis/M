@@ -222,6 +222,12 @@ public class AssessmentSheet extends AppCompatActivity {
         });
 
         go_profile = findViewById(R.id.go_profile);
+        go_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AssessmentSheet.this,ProfileActivity.class));
+            }
+        });
         next=findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override

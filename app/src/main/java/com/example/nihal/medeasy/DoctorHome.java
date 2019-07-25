@@ -18,7 +18,9 @@ import com.example.nihal.medeasy.Adapters.CategoriesAdapter;
 import com.example.nihal.medeasy.Adapters.DoctorAdapter;
 import com.example.nihal.medeasy.Dialoge.AlarmDialoge;
 import com.example.nihal.medeasy.Dialoge.BloodDialoge;
+import com.example.nihal.medeasy.Dialoge.SuagrPressureDialoge;
 import com.example.nihal.medeasy.Models.DoctorHomeModel;
+import com.example.nihal.medeasy.Models.Pressure_Sugar_Model;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
@@ -64,7 +66,7 @@ public class DoctorHome extends AppCompatActivity {
         docModel.add(new DoctorHomeModel("Medicine", 1));
         docModel.add(new DoctorHomeModel("Analysis", 2));
         docModel.add(new DoctorHomeModel("Profile", 3));
-        docModel.add(new DoctorHomeModel("Sugar Level & pressure", 5));
+        docModel.add(new DoctorHomeModel("Sugar & pressure", 5));
         docModel.add(new DoctorHomeModel("Blood Type", 4));
 
         doctorAdapter = new DoctorAdapter(docModel, this, new DoctorAdapter.OnItemClick() {
@@ -81,10 +83,18 @@ public class DoctorHome extends AppCompatActivity {
                     startActivity(new Intent(DoctorHome.this, LabResultsAvtivity.class));
 
                 } else if (position == 3) {
-                    startActivity(new Intent(DoctorHome.this, DocSectionMedince.class));
+                    startActivity(new Intent(DoctorHome.this, ProfileActivity.class));
                 }else if (position == 4) {
-                    //startActivity(new Intent(DoctorHome.this, .class));
-                }
+                    SuagrPressureDialoge cdd = new SuagrPressureDialoge(DoctorHome.this);
+                    cdd.setCancelable(false);
+                    cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                    lp.copyFrom(cdd.getWindow().getAttributes());
+                    lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                    lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                    cdd.getWindow().setAttributes(lp);
+
+                    cdd.show();                }
                 else if (position == 5) {
                     BloodDialoge cdd = new BloodDialoge(DoctorHome.this);
                     cdd.setCancelable(false);

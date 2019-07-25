@@ -3,25 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginRight="8dp"
-    app:cardCornerRadius="15dp">
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    app:cardCornerRadius="15dp"
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
 
         <TextView
             android:id="@+id/labName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:text="labName"
-            android:textColor="@color/selected_item_color"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textColor="@color/colorButton"
+            android:textSize="20dp"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,11 +37,11 @@
                 android:id="@+id/labVar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:hint="25 s/m"
-                android:textColor="@color/selected_item_color"
-                android:textColorHint="@color/selected_item_color" />
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/colorAccent"/>
 
             <CheckBox
                 android:id="@+id/labNav"
@@ -45,7 +50,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:text="-Ve"
-                android:textColor="@color/selected_item_color" />
+                android:buttonTint="@color/colorAccent"
+                android:textColor="@color/colorAccent" />
 
             <CheckBox
                 android:id="@+id/labPos"
@@ -55,7 +61,8 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:text="+Ve"
-                android:textColor="@color/selected_item_color" />
+                android:buttonTint="@color/colorAccent"
+                android:textColor="@color/colorAccent" />
 
         </LinearLayout>
 

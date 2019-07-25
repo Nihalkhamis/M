@@ -11,51 +11,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ProfileActivity"></activity>
         <activity
             android:name=".SyndrActivity"
             android:label="@string/title_activity_syndr"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HomeActivity" >
-
-        </activity>
+        <activity android:name=".HomeActivity"></activity>
 
         <receiver android:name=".BroadCast.AlarmService" />
 
         <activity android:name=".LabResultsAvtivity" />
-        <activity android:name=".AssessmentSheet2" >
-
-        </activity>
+        <activity android:name=".AssessmentSheet2"></activity>
         <activity android:name=".AlarmActivity" />
-        <activity android:name=".LoginActivity">
-
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".SignupActivity" />
         <activity
             android:name=".AssessmentSheet"
-            android:windowSoftInputMode="stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
         <activity
             android:name=".SecondActivity"
-            android:screenOrientation="landscape" >
-
-        </activity>
+            android:screenOrientation="landscape"></activity>
         <activity android:name=".DoctorLogin" />
-        <activity android:name=".startingPage" >
+        <activity android:name=".startingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DoctorHome"></activity>
-        <activity android:name=".DocSectionMedince">
-        </activity>
-        <activity android:name=".AssessmentSheetAfterSecion" >
-
-        </activity>
-
-        <activity android:name=".AssessmentSheet2AfterSecion"></activity>
+        <activity android:name=".DoctorHome" />
+        <activity android:name=".DocSectionMedince"></activity>
+        <activity android:name=".AssessmentSheetAfterSecion"></activity>
+        <activity android:name=".AssessmentSheet2AfterSecion" />
     </application>
 
 </manifest>

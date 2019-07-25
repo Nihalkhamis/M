@@ -55,21 +55,26 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
             </android.support.v7.widget.RecyclerView>
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="2500dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#D3D3D3" />
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/line_divider_nav" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="130dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginRight="20dp"
                 android:orientation="horizontal">
 
@@ -80,7 +85,7 @@
                     android:text="Save"
                     android:id="@+id/save"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="15dp"
+                    android:textSize="13dp"
 
                     />
 
@@ -90,7 +95,7 @@
                     android:background="#FFFFFF"
                     android:text="Cancel"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
 
             </LinearLayout>
 

@@ -18,14 +18,16 @@
         android:layout_alignParentStart="true"
         android:layout_height="70dp"
         android:layout_gravity="center"
-        android:src="@drawable/back_ic"/>
+        android:src="@drawable/back_ic"
+        android:layout_alignParentLeft="true" />
     <ImageView
         android:layout_width="40dp"
         android:layout_alignParentEnd="true"
         android:layout_height="70dp"
         android:id="@+id/add"
         android:layout_gravity="center"
-        android:src="@drawable/add_ic"/>
+        android:src="@drawable/add_ic"
+        android:layout_alignParentRight="true" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

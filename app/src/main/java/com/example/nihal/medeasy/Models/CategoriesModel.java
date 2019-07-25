@@ -10,6 +10,9 @@ public class CategoriesModel {
 
     }
 
+    public CategoriesModel() {
+    }
+
     public String getCategoryName() {
         return categoryName;
     }

@@ -59,6 +59,9 @@ public class SyndrActivity extends AppCompatActivity implements CustomDialog.Cus
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Synder");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

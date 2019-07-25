@@ -23,6 +23,7 @@ public class AssessmentSheetModel {
     private String ll_oedema_1;
     private String ll_oedema_2;
     private String ll_oedema_3;
+    private String Date;
 
     public AssessmentSheetModel(String yourComplaint) {
         this.yourComplaint = yourComplaint;
@@ -187,6 +188,14 @@ public class AssessmentSheetModel {
     }
     public void setLl_oedema_3(String ll_oedema_3) {
         this.ll_oedema_3 = ll_oedema_3;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 }
 

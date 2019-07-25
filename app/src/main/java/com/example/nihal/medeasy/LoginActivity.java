@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
                  final ProgressDialog loding = new ProgressDialog(LoginActivity.this);
 
-                loding.setMessage("Loding please ..."); // dh m4 btt7t fe el stringFile
+                loding.setMessage("Loding ..."); // dh m4 btt7t fe el stringFile
                 loding.setCancelable(false);
 
                 String UserPhoneInFireB = loginPhone.getText().toString();

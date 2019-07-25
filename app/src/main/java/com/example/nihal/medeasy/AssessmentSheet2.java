@@ -16,6 +16,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.hawk.Hawk;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AssessmentSheet2 extends AppCompatActivity {
 
     CheckBox level_of_consclousness_A;
@@ -392,6 +396,12 @@ public class AssessmentSheet2 extends AppCompatActivity {
                     model.setLl_oedema_2(ll_oedema2);
                     model.setLl_oedema_3(ll_oedema3);
                     model.setVital_signs_temp(vital_signs_temp.getText().toString());
+                    Date c = Calendar.getInstance().getTime();
+                    System.out.println("Current time => " + c);
+
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                    String formattedDate = df.format(c);
+                    model.setDate(formattedDate);
                     writeOnDataBase(model);
                 }
             }

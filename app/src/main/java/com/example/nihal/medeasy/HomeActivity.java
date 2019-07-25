@@ -69,9 +69,9 @@ public class HomeActivity extends AppCompatActivity {
 
         //NavigationDrawer
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.pre, R.drawable.add_ic, R.color.colorPrimary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.Home, R.drawable.add_ic, R.color.colorPrimary);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.Profile, R.drawable.add_ic, R.color.colorPrimary);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.pre, R.drawable.archive, R.color.white);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.Home, R.drawable.homepage, R.color.white);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.Profile, R.drawable.male1, R.color.white);
 
 // Add items
         bottom_navigation.addItem(item1);
@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
 
 // Change colors
         bottom_navigation.setAccentColor(Color.parseColor("#F63D2B"));
-        bottom_navigation.setInactiveColor(Color.parseColor("#747474"));
+        bottom_navigation.setInactiveColor(Color.parseColor("#ffffff"));
 
 // Force to tint the drawable (useful for font with icon for example)
         bottom_navigation.setForceTint(true);

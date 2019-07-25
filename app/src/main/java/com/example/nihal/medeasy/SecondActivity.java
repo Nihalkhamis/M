@@ -10,11 +10,13 @@ import android.util.Log;
 
 import com.example.nihal.medeasy.Adapters.DrugsAdapter;
 import com.example.nihal.medeasy.Models.Drugs;
+import com.example.nihal.medeasy.Utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 
@@ -61,7 +63,7 @@ public class SecondActivity extends AppCompatActivity {
 
 
     public void retrieveData() {
-        mDatabase.child("Users").child("1UbTozyso3SR8ZY7y0O6mZxTVqd2").child("Roshetat")
+        mDatabase.child("Users").child(""+ Hawk.get(Constants.userID)).child("Roshetat")
                 .addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -70,7 +72,7 @@ public class SecondActivity extends AppCompatActivity {
 
                      x=dataSnap.getKey();
                     Log.d("TTTTTTTTT", "onDataChange: "+dataSnap.getChildren());
-                    mDatabase.child("Users").child("1UbTozyso3SR8ZY7y0O6mZxTVqd2")
+                    mDatabase.child("Users").child(""+Hawk.get(Constants.userID))
                             .child("Roshetat").child(dataSnap.getKey()).child("Rosheta").child("Medicine")
                             .addValueEventListener(new ValueEventListener() {
 
@@ -83,7 +85,7 @@ public class SecondActivity extends AppCompatActivity {
                                     for (final DataSnapshot dataSnap11 : dataSnapshot11.getChildren()) {
                                         Log.d("TTT", "onDataChange: "+dataSnap11.getChildren());
 
-                                        mDatabase.child("Users").child("1UbTozyso3SR8ZY7y0O6mZxTVqd2")
+                                        mDatabase.child("Users").child(""+Hawk.get(Constants.userID))
                                                 .child("Roshetat").child(x).child("Rosheta").child("Medicine")
                                                 .child(dataSnap11.getKey()).addValueEventListener(new ValueEventListener() {
 

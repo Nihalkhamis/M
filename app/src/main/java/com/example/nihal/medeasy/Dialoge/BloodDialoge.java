@@ -33,6 +33,7 @@ public class BloodDialoge extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blood_dialog);
+        d=this;
         blood_type = findViewById(R.id.blood_type);
         save = findViewById(R.id.save);
         cancel= findViewById(R.id.cancel);
@@ -42,8 +43,8 @@ public class BloodDialoge extends Dialog {
             public void onClick(View view) {
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Users");
-
-                myRef.child(""+Hawk.get(Constants.patientID)).child("Info").child("Blood_type").setValue(""+blood_type.getText().toString());
+                myRef.child(""+Hawk.get(Constants.patientID)).child("Info").child("bloodType").setValue(""+blood_type.getText().toString());
+                dismiss();
 
             }
         });

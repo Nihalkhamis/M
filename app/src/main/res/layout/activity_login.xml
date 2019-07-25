@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginRight="20dp"
                 android:orientation="horizontal"
                 android:padding="3dp">
@@ -123,7 +123,7 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:gravity="right"
-                    android:text="forget password? "
+                    android:text="Forget password? "
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold" />
 
@@ -144,7 +144,7 @@
                         android:id="@+id/login"
                         android:layout_width="300dp"
                         android:layout_height="40dp"
-                        android:layout_marginBottom="30dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_marginTop="50dp"
                         android:background="@drawable/button_shap"
                         android:text="Login"
@@ -157,7 +157,7 @@
                         android:onClick="signUpForm"
                         android:text="Not register ? Sign up "
                         android:textColor="@color/colorAccent"
-                        android:textSize="20sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>

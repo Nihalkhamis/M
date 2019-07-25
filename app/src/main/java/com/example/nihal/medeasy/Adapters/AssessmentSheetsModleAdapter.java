@@ -45,7 +45,7 @@ public class AssessmentSheetsModleAdapter extends RecyclerView.Adapter<Assessmen
         assessmentSheetsModleAdapterHolder.elt5ssos.setText(modle.getYourComplaint());
         // assessmentSheetsModleAdapterHolder.description.setText(modle.getDescription());
         // assessmentSheetsModleAdapterHolder.drug.setText(modle.getDrug());
-        assessmentSheetsModleAdapterHolder.date.setText(modle.getDM());
+        assessmentSheetsModleAdapterHolder.date.setText(modle.getDate());
     }
 
     @Override

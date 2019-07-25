@@ -132,9 +132,7 @@ public class ProfileFragment extends Fragment {
                         public void onSuccess(byte[] bytes) {
                             Log.d("TTTTTTTTTTT", "onSuccess: "+bytes.length);
                             Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                            DisplayMetrics dm = new DisplayMetrics();
-                            getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-                            profile_image.setImageBitmap(bm);
+                             profile_image.setImageBitmap(bm);
                         }
 
                     });
@@ -443,7 +441,7 @@ public class ProfileFragment extends Fragment {
 
         final Query q = FirebaseDatabase.getInstance().getReference()
                 .child("Users")
-                .child("1UbTozyso3SR8ZY7y0O6mZxTVqd2/Roshetat");
+                .child(Hawk.get(Constants.userID)+"/Roshetat");
 
 
         q.addValueEventListener(new ValueEventListener() {

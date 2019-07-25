@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragment.ProfileFragment">
+    tools:context="Fragment.ProfileFragment"
+    android:background="@color/backgroundGray"
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
@@ -22,7 +24,8 @@
                 android:orientation="vertical">
 
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profile_image"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
@@ -48,12 +51,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Basic Infromation"
+                    android:text="Basic Information"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="#000"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -62,6 +69,7 @@
                     android:background="@drawable/basic_info_background"
                     android:gravity="center"
                     android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
                     android:padding="10dp">
 
                     <LinearLayout
@@ -221,7 +229,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -233,27 +240,66 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="password"
+                    android:text="New Password"
+                    android:textColor="#000"
+                    android:layout_marginBottom="10dp"
                     android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/autoPassword"
-                    android:layout_width="wrap_content"
-                    android:textSize="20sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="4655"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@drawable/pass_profile"
+                    android:layout_height="50dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:padding="5dp"
+                        android:src="@drawable/pass"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/autoPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="4655"
+                        android:layout_marginLeft="120dp"
+                        android:textColor="@color/colorButton"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Drugs"
-                    android:textStyle="bold" />
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
-                    android:background="@drawable/square"
+                    android:background="#fff"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="10dp">
@@ -283,6 +329,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pressure chart"
+                    android:textColor="#000"
+                    android:layout_marginBottom="10dp"
                     android:textStyle="bold" />
 
                 <com.github.mikephil.charting.charts.LineChart
